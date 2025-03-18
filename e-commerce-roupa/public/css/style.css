@@ -1,0 +1,34 @@
+.msg{
+    background-color: #D4EDDA;
+    color: #155724;
+    border: 1px solid #C3E6CB;
+    width: 10vw;
+    border-radius: 1cap;
+    text-align: center;
+    padding: 1%;
+    margin-bottom: 0;
+}
+
+#form-products{
+    background-color: rgb(28,28,28,0.3); 
+    width: 75%; 
+    padding: 1%; 
+    border-radius: 1cap; 
+    margin-inline-start: 15%;
+}
+
+.card {
+    height: 100%; /* Garante que os cards ocupem a altura máxima */
+}
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Espaço entre o conteúdo */
+}
+.row-cols-md-3 .col {
+    display: flex;
+}
+
+.card-img-top {
+    width: 100%; height: auto; object-fit: contain;
+}   
