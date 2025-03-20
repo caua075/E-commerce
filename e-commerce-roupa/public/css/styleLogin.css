@@ -1,0 +1,45 @@
+/* Padrão */
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo {
+    z-index: 10;
+    border-radius: 0.5cap;
+}
+
+/* Login */
+.login-card {
+    width: 100%;
+    background: #F8F7C3;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0vh 0.4vw 0.6vw rgba(0, 0, 0, 0.5);
+}
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Register */
+.register-card {
+    width: 140%;
+    background: #F8F7C3;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0vh 0.4vw 0.6vw rgba(0, 0, 0, 0.5);
+}
+
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+#register {
+    margin-right: 13vh;
+}
