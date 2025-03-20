@@ -36,8 +36,12 @@
     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
   </symbol>
   <symbol id="loc" class="bi bi-geo-alt" viewBox="0 0 16 16">
-  <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
-  <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+    <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
+    <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+  </symbol>
+  <symbol id="close" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+    <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>]
   </symbol>
 </svg>
 
@@ -66,11 +70,23 @@
             <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#buy"/></svg>
           </a>
         </li>
+        @auth
+        <li>
+          <form action="/logout" method="GET">
+            @csrf
+            <a href="/logout" class="nav-link text-dark" onclick="event.preventDefault(); this.closest('form').submit();">
+              <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#close"/></svg>
+            </a>
+          </form>
+        </li>
+        @endauth
+        @guest
         <li>
           <a href="/login" class="nav-link text-dark">
             <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
           </a>
         </li>
+        @endguest
       </ul>
     </header>
 
@@ -95,12 +111,15 @@
       <nav class="d-flex col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
         <a href="/" class="nav-link px-2 link-dark">Home</a>
       </nav>
-      @if(Auth::check() && Auth::user()->admin)
+      @auth
       <nav class="d-flex col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
         <a href="/products/create" class="nav-link px-2 link-dark">Cadastrar Produtos</a>
       </nav>
-      @endif
-    </header>
+      <nav class="d-flex col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
+        <a href="/products/dashboard" class="nav-link px-2 link-dark">Dashboard</a>
+      </nav>
+      @endauth
+  </header>
   </div>
     <main class="container">
         <div class="row">

@@ -9,6 +9,15 @@ body {
     z-index: 10;
     border-radius: 0.5cap;
 }
+.msgError{
+    background-color: #edd4d4;
+    color: #571515;
+    border: 1px solid #e6c3c3;
+    border-radius: 1cap;
+    text-align: center;
+    padding: 1%;
+    width: 18vw;
+}
 
 /* Login */
 .login-card {

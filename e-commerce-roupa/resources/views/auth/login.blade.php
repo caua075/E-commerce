@@ -3,6 +3,9 @@
 @section('content')
 
 <div class="login-container">
+@if(session('msgError'))
+  <p class="msgError">{{session('msgError')}}</p>
+@endif
   <div class="login-logo">
       <img src="{{ asset('img/tl_princ.ico') }}" class="logo img-fluid mb-2" alt="Logo da Loja" width="100">
   </div>

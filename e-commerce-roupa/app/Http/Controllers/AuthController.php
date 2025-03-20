@@ -45,10 +45,10 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect()->route(Auth::user()->is_admin ? 'admin.dashboard' : 'home');
+            return redirect()->route(Auth::user()->is_admin ? 'products.dashboard' : 'home');
         }
 
-        return back()->withErrors(['email' => 'Credenciais inválidas']);
+        return back()->with('msgError','Credenciais inválidas');
     }
 
     //Logout
