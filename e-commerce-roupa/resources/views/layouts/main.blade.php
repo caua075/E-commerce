@@ -112,14 +112,16 @@
         <a href="/" class="nav-link px-2 link-dark">Home</a>
       </nav>
       @auth
-      <nav class="d-flex col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
-        <a href="/products/create" class="nav-link px-2 link-dark">Cadastrar Produtos</a>
-      </nav>
-      <nav class="d-flex col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
-        <a href="/products/dashboard" class="nav-link px-2 link-dark">Dashboard</a>
-      </nav>
+        @if(Auth::user()->is_admin)
+          <nav class="d-flex col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
+            <a href="/products/create" class="nav-link px-2 link-dark">Cadastrar Produtos</a>
+          </nav>
+          <nav class="d-flex col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
+            <a href="/products/dashboard" class="nav-link px-2 link-dark">Dashboard</a>
+          </nav>
+        @endif
       @endauth
-  </header>
+    </header>
   </div>
     <main class="container">
         <div class="row">

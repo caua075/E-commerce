@@ -16,7 +16,7 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next)
     {
         if(!Auth::check() || !Auth::user()->is_admin){
-            return redirect('/');
+            return redirect('/')->with('msgError', 'Acesso não autorizado.');
         }
         return $next($request);
     }
