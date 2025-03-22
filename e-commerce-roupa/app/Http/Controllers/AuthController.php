@@ -48,7 +48,7 @@ class AuthController extends Controller
             return redirect()->route(Auth::user()->is_admin ? 'products.dashboard' : 'home');
         }
 
-        return back()->with('msgError','Credenciais inválidas');
+        return back()->with('msgError','Usuário ou senha incorretos!');
     }
 
     //Logout
