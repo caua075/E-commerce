@@ -66,7 +66,7 @@
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link text-dark">
+          <a href="/cart/index" class="nav-link text-dark">
             <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#buy"/></svg>
           </a>
         </li>
@@ -114,10 +114,16 @@
       @auth
         @if(Auth::user()->is_admin)
           <nav class="d-flex col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
+            <a href="/admin/dashboard" class="nav-link px-2 link-dark">Dashboard</a>
+          </nav>
+          <nav class="d-flex col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
+            <a href="/admin/productsDashboard" class="nav-link px-2 link-dark">Dashboard Produtos</a>
+          </nav>
+          <nav class="d-flex col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
             <a href="/products/create" class="nav-link px-2 link-dark">Cadastrar Produtos</a>
           </nav>
           <nav class="d-flex col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
-            <a href="/products/dashboard" class="nav-link px-2 link-dark">Dashboard</a>
+            <a href="/admin/usersDashboard" class="nav-link px-2 link-dark">Dashboard Usuários</a>
           </nav>
         @endif
       @endauth

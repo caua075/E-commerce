@@ -25,12 +25,6 @@ class ProductController extends Controller
         return view('welcome', compact('products', 'search'));
     }
 
-    public function dashboard()
-    {
-        $products = Product::with('category')->get();
-        return view('products.dashboard', ['products' => $products]);
-    }
-
     public function create()
     {
         $categories = Category::all();
@@ -84,12 +78,12 @@ class ProductController extends Controller
     {
         Product::findOrFail($request->id)->update($request->all());
 
-        return redirect('/dashboard')->with('msg', 'Produto atualizado com sucesso!');
+        return redirect('/admin/productsDashboard')->with('msg', 'Produto atualizado com sucesso!');
 
     }
 
     public function destroy($id){
         Product::findOrFail($id)->delete();
-        return redirect('/dashboard')->with('msg', 'Produto excluído com sucesso!');
+        return redirect('/admin/productsDashboard')->with('msg', 'Produto excluído com sucesso!');
     }
 }

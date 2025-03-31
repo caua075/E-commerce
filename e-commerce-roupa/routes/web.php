@@ -3,18 +3,20 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use App\Http\Middleware\AdminMiddleware;
 
 Route::get('/', [ProductController::class, 'index'])->name('home');
 
 // Rotas dos produtos
 Route::middleware(AdminMiddleware::class)->group(function(){
-Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
-Route::get('/products/dashboard', [ProductController::class, 'dashboard'])->name('products.dashboard');
-Route::post('/products', [ProductController::class, 'store']);
-Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
-Route::put('/products/update/{id}', [ProductController::class, 'update']);
-Route::delete('/products/{id}', [ProductController::class, 'destroy']);
+    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('/products', [ProductController::class, 'store']);
+    Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('/products/update/{id}', [ProductController::class, 'update']);
+    Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 });
 Route::get('/products/{id}', [ProductController::class, 'show']);
 
@@ -27,8 +29,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
 // Rotas Área Administrativa
-Route::middleware(['auth', 'admin'])->group(function (){
-    Route::get('/admin', function(){
-        return view('admin.dashboard');
-    });
+Route::middleware(AdminMiddleware::class)->group(function(){
+    Route::get('/admin/dashboard', [AdminController::class, 'adminDashboard'])->name('admin.dashboard');
+    Route::get('/admin/productsDashboard', [AdminController::class, 'productsDashboard'])->name('admin.productsDashboard');
+    Route::get('/admin/usersDashboard', [AdminController::class, 'usersDashboard'])->name('admin.usersDashboard');
 });

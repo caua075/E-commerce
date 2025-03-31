@@ -32,9 +32,11 @@
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
                 <a href="/products/{{ $product->id }}" class="btn btn-sm btn-outline-dark">Saber mais</a>
-                @if (Auth::check() && Auth::user()->admin)
-                  <a href="/products/{{ $product->id }}/edit" class="btn btn-sm btn-outline-warning">Editar</a>
+                @auth
+                @if(Auth::user()->is_admin)
+                  <a href="/products/{{ $product->id }}/edit" class="btn btn-sm btn-warning">Editar</a>
                 @endif
+                @endauth
               </div>
               <small class="text-muted">{{ $product->created_at->format('d/m/Y') }}</small>
             </div>

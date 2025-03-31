@@ -45,7 +45,7 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect()->route(Auth::user()->is_admin ? 'products.dashboard' : 'home');
+            return redirect()->route(Auth::user()->is_admin ? 'admin.dashboard' : 'home');
         }
 
         return back()->with('msgError','Usuário ou senha incorretos!');
