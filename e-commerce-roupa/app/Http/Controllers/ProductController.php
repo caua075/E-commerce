@@ -16,7 +16,7 @@ class ProductController extends Controller
     {
         $search = request('search');
         if ($search) {
-            $products = Product::where('name', 'like', '%' . $search . '%')->get();
+            $products = Product::where('name', 'LIKE', '%'  . $search . '%')->get();
         } else {
             $seed = Carbon::now()->format('Ymd');
             $products = Product::inRandomOrder($seed)->take(12)->get();

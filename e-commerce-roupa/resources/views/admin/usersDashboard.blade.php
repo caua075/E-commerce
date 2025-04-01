@@ -22,20 +22,21 @@
         @foreach($users as $user)
         <tr>
             <td scope="row">{{ $loop->index+1 }}</td>
-            <td><a href="/users/{{ $user->id }}" style="text-decoration:none">{{ $user->name }}</a></td>
+            <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
             <td>
-                @if($user->is_admin)
-                    <span>Sim</span>
-                @else
-                    <span>Não</span>
-                @endif
+                <form action="{{ route('users.toggle-admin', $user->id) }}" method="POST" style="display:inline-block;">
+                    @csrf
+                    <button type="submit" class="btn btn-sm {{ $user->is_admin ? 'btn-dark' : 'btn-warning' }}">
+                        {{ $user->is_admin ? 'Tornar Usuário' : 'Tornar Admin' }}
+                    </button>
+                </form>
             </td>
             <td>
-                <form action="#" method="POST" style="display:inline-block;">
+                <form action="{{ route('delete.user', $user->id) }}" method="POST" style="display:inline-block;">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-dark btn-sm" onclick="return confirm('Você tem certeza que deseja excluir este produto?')">Deletar</button>
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Você tem certeza que deseja excluir este produto?')">Deletar</button>
                 </form>
             </td>
         </tr>

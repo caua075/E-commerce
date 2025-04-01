@@ -20,6 +20,11 @@ Route::middleware(AdminMiddleware::class)->group(function(){
 });
 Route::get('/products/{id}', [ProductController::class, 'show']);
 
+Route::middleware(AdminMiddleware::class)->group(function(){
+    Route::post('/admin/{user}/toggle-admin', [AdminController::class, 'toggleAdmin'])->name('users.toggle-admin');
+    Route::delete('/admin/user/{id}', [AdminController::class, 'deleteUser'])->name('delete.user');
+});    
+
 
 // Rotas de autenticação
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');

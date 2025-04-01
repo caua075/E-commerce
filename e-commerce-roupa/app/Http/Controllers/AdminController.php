@@ -28,4 +28,23 @@ class AdminController extends Controller
         $users = User::all();
         return view('admin.usersDashboard', ['users' => $users]);
     }
+
+    public function toggleAdmin(User $user)
+    {
+        $user->is_admin = !$user->is_admin;
+        $user->save();
+
+        return redirect()->back()->with('msg', 'Permissão de administrador alterada com sucesso.');
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+        if ($user) {
+            $user->delete();
+            return redirect()->back()->with('msg', 'Usuário deletado com sucesso.');
+        } else {
+            return redirect()->back()->with('msg', 'Usuário não encontrado.');
+        }
+    }
 }

@@ -66,9 +66,15 @@
           </a>
         </li>
         <li>
+          @if(Auth::user())
           <a href="/cart/index" class="nav-link text-dark">
             <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#buy"/></svg>
           </a>
+          @else
+            <a href="/login" class="nav-link text-dark">
+              <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#buy"/></svg>
+            </a>
+          @endif
         </li>
         @auth
         <li>
@@ -93,16 +99,16 @@
     <!-- Barra de Busca Colapsável -->
     <div class="search-bar d-none py-3" id="searchBar" style="overflow: hidden; transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;">
     <form method="GET" action="/" class="d-flex justify-content-center">
-      <input type="text" name="search" class="form-control w-50" placeholder="Buscar produtos..." value="{{ $search ?? '' }}">
+      <input type="text" name="search" id="searchInput" class="form-control w-50" placeholder="Buscar produtos..." value="{{ $search ?? '' }}">
       <button type="submit" class="btn btn-warning mx-2">
         <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#search"/></svg>
       </button>
     </form>
       <div class="mt-2 text-center">
-        <span class="badge bg-secondary">Camisetas</span>
-        <span class="badge bg-secondary">Tênis</span>
-        <span class="badge bg-secondary">Bermudas</span>
-        <span class="badge bg-secondary">Camisas</span>
+        <button class="btn btn-secondary btn-sm suggestion-btn">Camiseta</button>
+        <button class="btn btn-secondary btn-sm suggestion-btn">Tênis</button>
+        <button class="btn btn-secondary btn-sm suggestion-btn">Bermuda</button>
+        <button class="btn btn-secondary btn-sm suggestion-btn">Camisa</button>
       </div>
     </div>
 
@@ -168,6 +174,17 @@
     const searchBar = document.getElementById('searchBar');
     searchBar.classList.toggle('d-none'); // Alterna a classe d-none
   }
+
+  document.addEventListener("DOMContentLoaded", function(){
+    const seachInput = document.getElementById('searchInput');
+    const suggestionButtons = document.querySelectorAll('.suggestion-btn');
+
+    suggestionButtons.forEach(button => {
+      button.addEventListener('click', function(){
+        seachInput.value = this.textContent;
+        seachInput.form.submit(); // Envia o formulário 
+      });
+    });
+  });
 </script>
 </html>
-
